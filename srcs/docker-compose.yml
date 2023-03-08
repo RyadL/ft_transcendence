@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+    nestjs:
+        container_name: nestjs
+        build:
+            context: requirements/nestjs
+            dockerfile: Dockerfile
+        ports:
+            - 3333:3333
+        networks:
+            - network
+        volumes:
+            - /home/dimitri/Documents/42/ft_transcendence/srcs/requirements/nestjs/srcs:/srcs
+
+    postgresql:
+        container_name: postgresql
+        build:
+            context: requirements/postgresql
+            dockerfile: Dockerfile
+        ports:
+            - 5432:5432
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: 123
+            POSTGRES_DB: nest
+        networks:
+            - network
+
+networks:
+    network:
