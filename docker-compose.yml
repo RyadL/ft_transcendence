@@ -1,4 +1,9 @@
-version: '3'
+version: "3.5"
+
+networks:
+  app-network:
+    name: app-network
+    driver: bridge
 
 services:
     nestjs:
@@ -8,10 +13,17 @@ services:
             dockerfile: Dockerfile
         ports:
             - 3333:3333
+<<<<<<< HEAD
         networks:
             - network
               #volumes:
               #- /home/dimitri/Documents/42/ft_transcendence/srcs/requirements/nestjs/srcs:/srcs
+=======
+        volumes:
+            - ./requirements/nestjs/srcs:/srcs
+        networks:
+          - app-network
+>>>>>>> 1c7940cbf2e470277e1a988551afd9e5673398de
 
     postgresql:
         container_name: postgresql
@@ -25,7 +37,12 @@ services:
             POSTGRES_PASSWORD: 123
             POSTGRES_DB: nest
         networks:
-            - network
-
-networks:
-    network:
+          - app-network    
+    react:
+        container_name: react
+        build: ./requirements/react
+        restart: unless-stopped
+        ports:
+            - "3000:3000"
+        networks:
+          - app-network
