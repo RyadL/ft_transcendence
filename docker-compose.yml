@@ -10,8 +10,8 @@ services:
             - 3333:3333
         networks:
             - network
-        volumes:
-            - /home/dimitri/Documents/42/ft_transcendence/srcs/requirements/nestjs/srcs:/srcs
+              #volumes:
+              #- /home/dimitri/Documents/42/ft_transcendence/srcs/requirements/nestjs/srcs:/srcs
 
     postgresql:
         container_name: postgresql
